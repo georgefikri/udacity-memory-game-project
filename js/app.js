@@ -57,29 +57,49 @@ cards2.forEach(function(item){
 //selector for Li
 deckLi = document.querySelectorAll('li.show.open');
 let clickCounter = 0;
-let tempArr = []
+let tempArr = [];
 
 //click Event / Event delegation Func.
 function addClass(event){
     clickCounter++;
+    let eventChild = event.target.nodeName.toLowerCase()==='li';
     let eve = event.target.childNodes[0].className;
     if(clickCounter < 3){
-        let eventChild = event.target.nodeName.toLowerCase()==='li';
         if(eventChild){
         event.target.classList.add('show', 'open');
         tempArr.push(eve);
-        // console.log(tempArr);
+        console.log(event)
+        if(tempArr.length === 2){
+            if(tempArr[0] === tempArr[1]){
+                let matchArr = document.querySelectorAll('.open');
+                for(let k = 0; k < matchArr.length ; k++){
+                    matchArr[k].classList.add('match');
+                } 
+  
+            } else{
+                setTimeout(function(){
+                    let allArr = document.querySelectorAll('.open');
+                    console.log(allArr)
+                    for(let j = 0; j < allArr.length ; j++){
+                        allArr[j].removeAttribute('class');
+                        allArr[j].setAttribute('class', 'card')
+                    } 
+                }, 3000);
+                tempArr.pop();
+                tempArr.pop();
+            }
+        }
+        
 
         }
     }
-    if(tempArr.length === 2){
-        if(tempArr[0] === tempArr[1]){
-
-        } else{
-
-            console.log('nooo');
-        }
-    }
+    // if(tempArr.length === 2){
+    //     if(tempArr[0] === tempArr[1]){
+            
+    //     } else{
+            
+    //     }
+    // }
     
 }
 
@@ -96,10 +116,15 @@ deck.addEventListener('click', addClass);
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call 
+  from this one)
  *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ *    + if the cards do match, lock the cards in the open position (put this functionality in 
+  another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol 
+  (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another
+   function that you call from this one)
+ *    + if all cards have matched, display a message with the final score 
+  (put this functionality in another function that you call from this one)
  */
