@@ -57,49 +57,49 @@ cards2.forEach(function(item){
 //selector for Li
 deckLi = document.querySelectorAll('li.show.open');
 let clickCounter = 0;
-let tempArr = [];
 
+let tempArr = [];
+let activeArr = [];
 //click Event / Event delegation Func.
 function addClass(event){
-    clickCounter++;
+    
     let eventChild = event.target.nodeName.toLowerCase()==='li';
     let eve = event.target.childNodes[0].className;
-    if(clickCounter < 3){
+    if(clickCounter < 4){
         if(eventChild){
         event.target.classList.add('show', 'open');
         tempArr.push(eve);
-        console.log(event)
-        if(tempArr.length === 2){
-            if(tempArr[0] === tempArr[1]){
-                let matchArr = document.querySelectorAll('.open');
-                for(let k = 0; k < matchArr.length ; k++){
-                    matchArr[k].classList.add('match');
-                } 
-  
-            } else{
-                setTimeout(function(){
-                    let allArr = document.querySelectorAll('.open');
-                    console.log(allArr)
-                    for(let j = 0; j < allArr.length ; j++){
-                        allArr[j].removeAttribute('class');
-                        allArr[j].setAttribute('class', 'card')
-                    } 
-                }, 3000);
-                tempArr.pop();
-                tempArr.pop();
-            }
-        }
-        
 
-        }
+            if(tempArr.length === 2){    
+                let matchArr = document.querySelectorAll('.show.open');
+                if(tempArr[0] === tempArr[1]){
+                    for(let k = 0; k < matchArr.length ; k++){
+                        matchArr[k].classList.add('match');   
+                    }
+
+                } else{
+                    setTimeout(() => {
+                        let aaa = document.querySelectorAll('.show.open');
+                            for(let j = 0 ; j < aaa.length ; j++){
+                                if(!aaa[j].classList.contains('match')){
+                                                  
+                                aaa[j].setAttribute('class' , 'card');
+                                console.log(tempArr)
+                                }
+                 
+
+                            }
+                        }, 2000);
+
+                    }
+                    tempArr = [];
+                    clickCounter = 0;
+                }
+
+            }
+        clickCounter++;
     }
-    // if(tempArr.length === 2){
-    //     if(tempArr[0] === tempArr[1]){
-            
-    //     } else{
-            
-    //     }
-    // }
+
     
 }
 
