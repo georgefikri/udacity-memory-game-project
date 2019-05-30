@@ -68,15 +68,15 @@ function addClass(event){
         if(eventChild){
         event.target.classList.add('show', 'open');
         tempArr.push(eve);
-        console.log(tempArr);
+        // console.log(tempArr);
 
         }
     }
     if(tempArr.length === 2){
         if(tempArr[0] === tempArr[1]){
-            
+
         } else{
-            //deckLi.classList.add('card');
+
             console.log('nooo');
         }
     }
