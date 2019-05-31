@@ -103,7 +103,11 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .restart {
+.score-panel #restart {
     float: right;
     cursor: pointer;
+}
+
+.score-panel .countdown2 {
+    margin: 0 20px;
 }

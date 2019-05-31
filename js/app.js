@@ -1,3 +1,10 @@
+// (function(){
+
+
+
+
+
+
 /***********Variables*********/
 let i , cardsLength, deck , deckLi ;
 
@@ -32,7 +39,7 @@ function shuffle(array) {
   }
   
 
-let cards = ['fa-diamond' , 'fa-paper-plane-o' , 'fa-anchor' , 'fa-bolt' , 'fa-cube' , 'fa-anchor' , 'fa-leaf' , 'fa-bicycle'];
+let cards = ['fa-diamond' , 'fa-paper-plane-o' , 'fa-anchor' , 'fa-bolt' , 'fa-cube' , 'fa-bomb' , 'fa-leaf' , 'fa-bicycle'];
 let cards2 = [...cards, ...cards];
 
 cards2 = shuffle(cards2);
@@ -56,61 +63,166 @@ cards2.forEach(function(item){
 
 //selector for Li
 deckLi = document.querySelectorAll('li.show.open');
-let clickCounter = 0;
 
+//click counter
+let clickCounter = 0;
+//new total counter
+let totalCounter = 0;
+
+//empty array to add classes from matched elements.
 let tempArr = [];
-let activeArr = [];
+
 //click Event / Event delegation Func.
 function addClass(event){
-    
-    let eventChild = event.target.nodeName.toLowerCase()==='li';
-    let eve = event.target.childNodes[0].className;
-    if(clickCounter < 4){
-        if(eventChild){
-        event.target.classList.add('show', 'open');
-        tempArr.push(eve);
+    clickCounter++;
 
-            if(tempArr.length === 2){    
+    stepsCounter();
+    // //moves counter
+    // totalCounter +=1;
+    // let moves = document.querySelector('.moves');
+    // moves.textContent = totalCounter; 
+
+    // console.log(totalCounter)
+    
+    //check if the element click is LI
+    let eventChild = event.target.nodeName.toLowerCase()==='li';
+
+    //get the class of the element clicked to be added to Array
+    let eve = event.target.childNodes[0].className;
+
+    //check if click counter is less than 3
+    if(clickCounter < 3){
+        if(eventChild){
+        //element clicked add 2 classes show & open to
+        event.target.classList.add('show', 'open');
+
+
+        //add the classes of the clicked element in tempArr array to compare.
+        tempArr.push(eve);   
+            
+            //check if length of the array is =2
+            if(tempArr.length === 2){
+
                 let matchArr = document.querySelectorAll('.show.open');
+                //comparing element 1 and 2 of array tempArr and add class match if they match
+
+
                 if(tempArr[0] === tempArr[1]){
                     for(let k = 0; k < matchArr.length ; k++){
-                        matchArr[k].classList.add('match');   
+                        matchArr[k].classList.add('match');
                     }
+                    //resetting click counter & tempArr after adding match class
+                    clickCounter = 0;
+                    tempArr = [];
 
                 } else{
+                    //if elements of the array doesn't match remove show & open to close the elements.
                     setTimeout(() => {
-                        let aaa = document.querySelectorAll('.show.open');
-                            for(let j = 0 ; j < aaa.length ; j++){
-                                if(!aaa[j].classList.contains('match')){
-                                                  
-                                aaa[j].setAttribute('class' , 'card');
-                                console.log(tempArr)
+                            for(let j = 0 ; j < matchArr.length ; j++){
+                                if(!matchArr[j].classList.contains('match')){               
+                                    matchArr[j].classList.remove('show' , 'open');
                                 }
-                 
 
+                            //resetting click counter & tempArr to allow selecting more elements
+                            clickCounter = 0;
+                            tempArr = [];
                             }
                         }, 2000);
-
+                        
                     }
-                    tempArr = [];
-                    clickCounter = 0;
+                //if all elements are matched and selected show alert after couple of seconds.    
+                        let match  = document.querySelectorAll('.match');
+                        if(match.length === 16){
+                            setTimeout(() => {
+                                alert('5alast ya 7eletha');    
+                            }, 3000);
+                            //stop timer
+                            clearInterval(gameTimer(0));
+                            //remove stars depending on how many moves.
+                            let ratingStars = document.querySelector('.stars');
+                            if(totalCounter >= 21 && totalCounter <=30){
+                                let ratingStars = document.querySelector('.stars');
+                                ratingStars.children[0].remove();
+                            } else if (totalCounter > 35) {
+                                ratingStars.children[0].remove();
+                                ratingStars.children[1].remove();
+                            }
+                        }
                 }
 
+
+
+            } 
+            //ignore any clicks that is not on li
+            else if(event.target.nodeName.toLowerCase()!=='li'){
+                clickCounter = 0;
+                console.log('not LI ya 7omar');
             }
-        clickCounter++;
+          console.log(clickCounter);
+       
     }
+    
 
     
 }
 
-
-
-
-
 //click event on UL Cont event delegation
 deck.addEventListener('click', addClass);
 
+let moves = document.querySelector('.moves');
+/////////////////////Steps Counter //////////////////////////
+function stepsCounter(){
+    //moves counter
+    totalCounter +=1;
+    moves = document.querySelector('.moves');
+    moves.textContent = totalCounter; 
+}
 
+/////////////////////Game Timer //////////////////////////
+function gameTimer(intervalTime){
+    var input = {
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    };
+
+    var timestamp = new Date(input.hours, input.minutes, input.seconds);
+
+    var interval = intervalTime;
+
+    setInterval(function () {
+        timestamp = new Date(timestamp.getTime() + interval * 1000);
+        document.querySelector('.countdown2').innerHTML = timestamp.getHours() + 'h:' 
+        + timestamp.getMinutes() + 'm:' + timestamp.getSeconds() + 's';
+    }, Math.abs(interval) * 1000);
+
+}
+gameTimer(1);
+
+
+//////////////////////////////// Reset////////////////////////////
+
+ function resetFunc(){
+    let card = document.querySelectorAll('.card');
+
+    for(let o = 0 ;  o  < card.length ; o++ ){
+        if(card[o].classList.contains('match')){
+            card[o].classList.remove('match' , 'show' , 'open');
+        } else if (card[o].classList.contains('show')) {
+            card[o].classList.remove('show' , 'open');
+        }
+    }
+    tempArr = [];
+    //////reset steps counter
+    totalCounter = 0;
+    moves.textContent = 0;
+
+    /////timer reset --not done.
+  clearInterval(gameTimer(0));
+    gameTimer(1);
+}
+let reset = document.getElementById('restart');
+reset.addEventListener('click', resetFunc);
 
 
 /*
@@ -128,3 +240,4 @@ deck.addEventListener('click', addClass);
  *    + if all cards have matched, display a message with the final score 
   (put this functionality in another function that you call from this one)
  */
+// })();
