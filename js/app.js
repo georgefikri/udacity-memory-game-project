@@ -1,13 +1,9 @@
 // (function(){
-
-
-
-
-
-
 /***********Variables*********/
 let i , cardsLength, deck , deckLi ;
-
+let endGamePopup = document.getElementById('endGame');
+let playagain = document.getElementById('playAgain');
+let ratingPopup = document.querySelector('.ratingPopup');
 /*
  * Create a list that holds all of your cards
  */
@@ -133,11 +129,9 @@ function addClass(event){
                 //if all elements are matched and selected show alert after couple of seconds.    
                         let match  = document.querySelectorAll('.match');
                         if(match.length === 16){
-                            setTimeout(() => {
-                                alert('5alast ya 7eletha');    
-                            }, 3000);
                             //stop timer
                             clearInterval(gameTimer(0));
+
                             //remove stars depending on how many moves.
                             let ratingStars = document.querySelector('.stars');
                             if(totalCounter >= 21 && totalCounter <=30){
@@ -147,29 +141,41 @@ function addClass(event){
                                 ratingStars.children[0].remove();
                                 ratingStars.children[1].remove();
                             }
+
+                            //show popup
+                            endGamePopup.classList.toggle('hide');
+                            ratingPopup.innerHTML = ratingStars.innerHTML;
+
+
+                            //play again button
+                            playagain.addEventListener('click' , function(){
+                                setTimeout(() => {
+                                    endGamePopup.classList.toggle('hide');
+                                    resetFunc();
+                                }, 1000);
+                                
+                            });
+
                         }
                 }
-
-
-
             } 
             //ignore any clicks that is not on li
             else if(event.target.nodeName.toLowerCase()!=='li'){
                 clickCounter = 0;
                 console.log('not LI ya 7omar');
             }
-          console.log(clickCounter);
-       
-    }
-    
-
-    
+          console.log(clickCounter);    
+    }   
 }
 
 //click event on UL Cont event delegation
 deck.addEventListener('click', addClass);
 
 let moves = document.querySelector('.moves');
+
+//////////////////////////////// EndGame Popup////////////////////////////
+endGamePopup.classList.add('hide');
+
 /////////////////////Steps Counter //////////////////////////
 function stepsCounter(){
     //moves counter
@@ -200,6 +206,7 @@ function gameTimer(intervalTime){
 gameTimer(1);
 
 
+
 //////////////////////////////// Reset////////////////////////////
 
  function resetFunc(){
@@ -218,11 +225,15 @@ gameTimer(1);
     moves.textContent = 0;
 
     /////timer reset --not done.
-  clearInterval(gameTimer(0));
-    gameTimer(1);
+   
+   clearInterval(gameTimer(0))
+  
+
 }
 let reset = document.getElementById('restart');
 reset.addEventListener('click', resetFunc);
+
+
 
 
 /*

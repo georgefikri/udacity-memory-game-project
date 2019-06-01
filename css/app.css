@@ -111,3 +111,57 @@ h1 {
 .score-panel .countdown2 {
     margin: 0 20px;
 }
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+#endGame {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(52, 59, 62, .9);
+    text-align: center;
+}
+
+.endGameInner {
+    width: 600px;
+    height: 400px;
+    z-index: 100;
+    background: #fff;
+    border-radius: 20px;
+    left: 0;
+    right: 0;
+    margin: 50px auto  50px ;
+    text-align: center;
+    padding: 20px;
+}
+
+#playAgain {
+    background-color: #2e3d49;
+    color: #fff;
+    min-width: 60px;
+    min-height: 30px;
+    border: 0;
+    padding: 10px;
+    text-transform: capitalize
+}
+
+.ratingPopups span {
+    display: inline-block;
+}
+
+.ratingPopups .stars {
+    display:inline-block;
+    list-style-type:none; 
+}
+
+.ratingPopups .stars li {
+    display:inline-block;
+    margin:0 5px;
+}
