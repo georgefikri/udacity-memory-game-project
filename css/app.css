@@ -71,6 +71,10 @@ h1 {
     cursor: default;
 }
 
+.pointerEvent {
+    pointer-events: none;
+}
+
 .deck .card.show {
     font-size: 33px;
 }

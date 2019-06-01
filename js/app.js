@@ -70,7 +70,7 @@ let tempArr = [];
 
 //click Event / Event delegation Func.
 function addClass(event){
-    clickCounter++;
+    
 
     stepsCounter();
     //check if the element click is LI
@@ -80,10 +80,19 @@ function addClass(event){
     let eve = event.target.childNodes[0].className;
 
     //check if click counter is less than 3
-    if(clickCounter < 3){
+    if(clickCounter < 2){
         if(eventChild){
+
         //element clicked add 2 classes show & open to
-        event.target.classList.add('show', 'open');
+        let lis = document.querySelectorAll('ul.deck li');
+        for(let p = 0 ; p < lis.length ; p++){
+            if (!lis[p].classList.contains('show')) {
+                event.target.classList.add('show', 'open' , 'pointerEvent');
+                console.log('da el length '+tempArr.length)
+            }
+
+        }
+        
 
 
         //add the classes of the clicked element in tempArr array to compare.
@@ -109,7 +118,7 @@ function addClass(event){
                     setTimeout(() => {
                             for(let j = 0 ; j < matchArr.length ; j++){
                                 if(!matchArr[j].classList.contains('match')){               
-                                    matchArr[j].classList.remove('show' , 'open');
+                                    matchArr[j].classList.remove('show' , 'open' , 'pointerEvent');
                                 }
 
                             //resetting click counter & tempArr to allow selecting more elements
@@ -159,6 +168,7 @@ function addClass(event){
             }
           console.log(clickCounter);    
     }   
+    clickCounter++;
 }
 
 //click event on UL Cont event delegation
