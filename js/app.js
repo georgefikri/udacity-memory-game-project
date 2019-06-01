@@ -4,6 +4,7 @@ let i , cardsLength, deck , deckLi ;
 let endGamePopup = document.getElementById('endGame');
 let playagain = document.getElementById('playAgain');
 let ratingPopup = document.querySelector('.ratingPopup');
+let stepsPrint = document.querySelector('.steps');
 /*
  * Create a list that holds all of your cards
  */
@@ -147,6 +148,8 @@ function addClass(event){
                             endGamePopup.classList.toggle('hide');
                             ratingPopup.innerHTML = ratingStars.innerHTML;
 
+                            //steps overall when finished
+                            stepsPrint.innerHTML = totalCounter;
 
                             //play again button
                             playagain.addEventListener('click' , function(){
@@ -162,7 +165,9 @@ function addClass(event){
             } 
             //ignore any clicks that is not on li
             else if(event.target.nodeName.toLowerCase()!=='li'){
-                clickCounter = -1;
+                // clickCounter = -1;
+                clickCounter -= 1;
+
                 console.log('not LI ya 7omar');
             }
           console.log(clickCounter);   
@@ -217,9 +222,9 @@ gameTimer(1);
 
     for(let o = 0 ;  o  < card.length ; o++ ){
         if(card[o].classList.contains('match')){
-            card[o].classList.remove('match' , 'show' , 'open');
+            card[o].classList.remove('match' , 'show' , 'open', 'pointerEvent');
         } else if (card[o].classList.contains('show')) {
-            card[o].classList.remove('show' , 'open');
+            card[o].classList.remove('show' , 'open' , 'pointerEvent');
         }
     }
     tempArr = [];
