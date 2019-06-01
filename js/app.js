@@ -88,7 +88,6 @@ function addClass(event){
         for(let p = 0 ; p < lis.length ; p++){
             if (!lis[p].classList.contains('show')) {
                 event.target.classList.add('show', 'open' , 'pointerEvent');
-                console.log('da el length '+tempArr.length)
             }
 
         }
@@ -110,7 +109,7 @@ function addClass(event){
                         matchArr[k].classList.add('match');
                     }
                     //resetting click counter & tempArr after adding match class
-                    clickCounter = 0;
+                    clickCounter = -1;
                     tempArr = [];
 
                 } else{
@@ -163,11 +162,12 @@ function addClass(event){
             } 
             //ignore any clicks that is not on li
             else if(event.target.nodeName.toLowerCase()!=='li'){
-                clickCounter = 0;
+                clickCounter = -1;
                 console.log('not LI ya 7omar');
             }
-          console.log(clickCounter);    
-    }   
+          console.log(clickCounter);   
+    } 
+
     clickCounter++;
 }
 
