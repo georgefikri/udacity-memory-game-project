@@ -73,13 +73,6 @@ function addClass(event){
     clickCounter++;
 
     stepsCounter();
-    // //moves counter
-    // totalCounter +=1;
-    // let moves = document.querySelector('.moves');
-    // moves.textContent = totalCounter; 
-
-    // console.log(totalCounter)
-    
     //check if the element click is LI
     let eventChild = event.target.nodeName.toLowerCase()==='li';
 
