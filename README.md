@@ -22,3 +22,4 @@ This project is built for Udacity Course Project Using HTML CSS & Javascript
 * known issue: Timer of the Game when reset can't re-run again.
 * in app.js file gameTimer() function
 * i reset the timer when click on the reset icon resetFunc()
+* check CONTRIBUTING.md file
