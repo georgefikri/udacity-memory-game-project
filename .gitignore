@@ -3,5 +3,5 @@
 .stylelintrc
 .eslintrc.json
 
-/.vscode
-/.gitattributes
+.vscode/
+.gitattributes/
