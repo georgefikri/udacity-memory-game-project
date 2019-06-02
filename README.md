@@ -18,3 +18,7 @@ This project is built for Udacity Course Project Using HTML CSS & Javascript
 * When you finish the game will see a popup modal congratulates you and giving you the option to play again
 
 
+## Contribution
+* known issue: Timer of the Game when reset can't re-run again.
+* in app.js file gameTimer() function
+* i reset the timer when click on the reset icon resetFunc()
