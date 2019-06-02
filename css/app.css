@@ -169,3 +169,7 @@ h1 {
     display:inline-block;
     margin:0 5px;
 }
+
+.fa-rotate-right:before, .fa-repeat:before {
+    font-size: 20px;
+}

@@ -168,9 +168,9 @@ function addClass(event){
                 // clickCounter = -1;
                 clickCounter -= 1;
 
-                console.log('not LI ya 7omar');
+          
             }
-          console.log(clickCounter);   
+          
     } 
 
     clickCounter++;

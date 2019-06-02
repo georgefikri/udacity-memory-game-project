@@ -1,20 +1,20 @@
 # Memory Game Project
 
-## Table of Contents
+## Project Objective
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This project is built for Udacity Course Project Using HTML CSS & Javascript 
 
-## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Project Dependencies
 
-To get started, open `js/app.js` and start building out the app's functionality
+* [Font Awesome](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+* [Google Fonts](https://fonts.googleapis.com/css?family=Coda)
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
-## Contributing
+## How To play
+* open index.html to your prefred browser
+* The game has 8 Cards twice , each card has an icon and try clicking to match any 2 cards together.
+* You Target is to Match all cards together with the minimim moves possible
+* When you finish the game will see a popup modal congratulates you and giving you the option to play again
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
