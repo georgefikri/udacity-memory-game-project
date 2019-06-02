@@ -1,7 +1,8 @@
 # How to contribute
 
 * take a copy of the project.
-* create a new branch
+* create a new branch.
+* when you able to fix it please contact me on : 
 * contact me on github.
 * [Linkedin](https://www.linkedin.com/in/gfikri/)
 * or [Twitter](https://twitter.com/BigGeo_/)
